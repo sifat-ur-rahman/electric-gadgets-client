@@ -18,8 +18,8 @@ function MainLayout() {
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 lg:w-60 text-base-content">
             <li>
-              <Link className="font-medium" to="/dashboard/allSellers">
-                All Sellers
+              <Link className="font-medium" to="/">
+                All Products
               </Link>
             </li>
             <li>

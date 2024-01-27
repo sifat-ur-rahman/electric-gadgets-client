@@ -4,12 +4,17 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AddProduct from "../pages/AddProduct";
 import SalesHistory from "../pages/SalesHistory";
+import AllProducts from "../pages/AllProducts";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "",
+        element: <AllProducts />,
+      },
       {
         path: "add-product",
         element: <AddProduct />,
