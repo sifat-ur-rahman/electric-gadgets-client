@@ -69,10 +69,10 @@ function AddProduct() {
   };
   return (
     <div className="  flex justify-center items-center">
-      <div className="w-full p-7">
+      <div className="w-full p-7 grid items-center justify-items-center">
         <h2 className="text-4xl mb-4 text-center font-bold"> Add A Product </h2>
         <form onSubmit={handleSubmit(handleAddProduct)}>
-          <section className="grid grid-cols-2">
+          <section className="grid grid-cols-1 lg:grid-cols-2  lg:gap-9">
             <div>
               <div className="form-control w-full max-w-xs">
                 <label className="label">
@@ -328,7 +328,7 @@ function AddProduct() {
           </section>
           <div className="flex justify-end items-center">
             <input
-              className="btn btn-accent text-xl w-72  mt-5"
+              className="btn btn-accent  text-xl w-72  mt-5"
               value="Add Product"
               type="submit"
             />

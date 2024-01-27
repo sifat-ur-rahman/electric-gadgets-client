@@ -14,9 +14,9 @@ function MainLayout() {
         <div className="drawer-content ">
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side lg:w-60 w-1/2 mt-10 lg:mt-0 ">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-60  text-base-content">
+          <ul className="menu p-4 lg:w-60 text-base-content">
             <li>
               <Link className="font-medium" to="/dashboard/allSellers">
                 All Sellers
