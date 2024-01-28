@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../../../redux/hooks";
-import { logout } from "../../../redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import {
+  logout,
+  useCurrentToken,
+} from "../../../redux/features/auth/authSlice";
 import toast from "react-hot-toast";
 
 function Navbar() {
+  const token = useAppSelector(useCurrentToken);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -15,13 +19,15 @@ function Navbar() {
       <li>
         <Link to="/">Home</Link>
       </li>
-
-      <li>
-        <button onClick={handleLogout}>Logout</button>
-      </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
+      {token ? (
+        <li>
+          <button onClick={handleLogout}>Logout</button>
+        </li>
+      ) : (
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      )}
     </>
   );
 
