@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../../redux/hooks";
+import { logout } from "../../../redux/features/auth/authSlice";
+import toast from "react-hot-toast";
 
 function Navbar() {
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    toast.success("Logout successfully");
+  };
   const menuItems = (
     <>
       <li>
@@ -8,7 +17,7 @@ function Navbar() {
       </li>
 
       <li>
-        <Link to="/blogs">Blogs</Link>
+        <button onClick={handleLogout}>Logout</button>
       </li>
       <li>
         <Link to="/login">Login</Link>

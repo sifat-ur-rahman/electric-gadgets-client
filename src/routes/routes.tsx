@@ -5,11 +5,16 @@ import Register from "../pages/Register";
 import AddProduct from "../pages/AddProduct";
 import SalesHistory from "../pages/SalesHistory";
 import AllProducts from "../pages/AllProducts";
+import ProtectedRoute from "../components/layout/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <ProtectedRoute>
+        <App />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "",

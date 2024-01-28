@@ -1,8 +1,13 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../redux/hooks";
+import { useCreateUserMutation } from "../redux/features/auth/authApi";
+import { verifyToken } from "../utils/verifyToken";
+import { setUser } from "../redux/features/auth/authSlice";
 
 function Register() {
+  const dispatch = useAppDispatch();
   interface IFormData {
     name: string;
     email: string;
@@ -14,10 +19,22 @@ function Register() {
     handleSubmit,
     reset,
   } = useForm<IFormData>();
+  const [createUser, { error }] = useCreateUserMutation();
+  console.log(error);
   const navigate = useNavigate();
 
-  const handleSignUp = (data: IFormData) => {
+  const handleSignUp = async (data: IFormData) => {
     console.log(data);
+    const userData = {
+      username: data.name,
+      email: data.email,
+      password: data.password,
+    };
+
+    const res = await createUser(userData).unwrap();
+    const user = verifyToken(res.data.token);
+
+    dispatch(setUser({ user: user, token: res.data.token }));
     toast.success("Registration successfully");
     reset();
     navigate("/");
