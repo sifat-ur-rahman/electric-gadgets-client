@@ -1,30 +1,9 @@
-# React + TypeScript + Vite
+# Electric gadgets Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Project features
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- User authentication is secured using JWT, allowing users to register and log in with a single role for system management.
+- This filtering system streamlines inventory management and facilitates customer searches based on the unique characteristics of electronic devices.
+- Sales history is categorized by weekly, daily, monthly, and yearly records, providing insights into sales trends over different time periods.
+- Real-time UI updates are gracefully implemented using RTK Query, ensuring a dynamic and responsive user interface.
+- Redux is employed for state management, maintaining a consistent application state for efficient data handling.
