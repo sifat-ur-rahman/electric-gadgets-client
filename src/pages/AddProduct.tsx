@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useAddProductMutation } from "../redux/features/product/productApi";
 
 function AddProduct() {
   interface IFormData {
@@ -20,7 +21,8 @@ function AddProduct() {
     width: number;
     height: number;
   }
-
+  const [addProduct, { error }] = useAddProductMutation();
+  console.log({ error });
   const {
     register,
     formState: { errors },
@@ -28,7 +30,7 @@ function AddProduct() {
     reset,
   } = useForm<IFormData>();
 
-  const handleAddProduct = (data: IFormData) => {
+  const handleAddProduct = async (data: IFormData) => {
     const image = data.img[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -38,13 +40,13 @@ function AddProduct() {
       body: formData,
     })
       .then((res) => res.json())
-      .then((imgData) => {
+      .then(async (imgData) => {
         if (imgData.success) {
           //product data
           const product = {
             name: data.name,
             img: imgData.data.url,
-            Price: +data.price,
+            price: +data.price,
             quantity: +data.quantity,
             releaseDate: data.releaseDate,
             brand: data.brand,
@@ -61,7 +63,9 @@ function AddProduct() {
               height: +data.height,
             },
           };
-          console.log(product);
+          console.log({ product });
+          addProduct(product);
+
           toast.success("Product added successfully");
           reset();
         }
@@ -287,7 +291,7 @@ function AddProduct() {
                   <span className="label-text">Product length</span>
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   placeholder="Product length"
                   {...register("length", { required: "Length is required" })}
                   className="input input-bordered w-full max-w-xs"
