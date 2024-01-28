@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useGetProductQuery } from "../redux/features/product/productApi";
-
+import { BsThreeDotsVertical } from "react-icons/bs";
 import DetailsModal from "../components/Modal/DetailsModal";
 import SaleModal from "../components/Modal/SaleModal";
 
@@ -26,6 +26,27 @@ function AllProducts() {
             className="border rounded-lg hover:border-orange-300  p-3"
             key={p._id}
           >
+            <div className="dropdown dropdown-bottom flex justify-end">
+              <div tabIndex={0} role="button" className="pl-3">
+                <BsThreeDotsVertical />
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu p-2 shadow bg-orange-100 rounded-box w-52"
+              >
+                <li>
+                  <label
+                    onClick={() => setModelData(p)}
+                    htmlFor="booking-modal"
+                  >
+                    Buy Now
+                  </label>
+                </li>
+                <li>
+                  <a>Item 2</a>
+                </li>
+              </ul>
+            </div>
             <div className=" grid grid-cols-2 ">
               <img className="size-40" src={p.img} alt={p.name} />
               <div>
