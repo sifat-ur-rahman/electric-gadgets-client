@@ -1,11 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useLoaderData } from "react-router-dom";
+
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
+import { useGetSalesHistoryQuery } from "../redux/features/sales/saleApi";
 
 function SalesHistory() {
-  const salesData = useLoaderData();
-  console.log(salesData.data);
+  const { data, isLoading, isError } = useGetSalesHistoryQuery(undefined);
+
+  console.log({ isError });
+  if (isLoading) {
+    return (
+      <div className="flex items-center h-screen justify-center">
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+  }
   const generateChartData = (data: any[], label: string) => {
     return {
       labels: data?.map((entry) => `${label} ${entry._id}`),
@@ -25,26 +34,26 @@ function SalesHistory() {
       <h2 className="text-center text-2xl font-bold my-4 py-2 bg-orange-200">
         Daily Sales
       </h2>
-      <Bar data={generateChartData(salesData?.data.daily, "Date")} />
+      <Bar data={generateChartData(data?.data.daily, "Date")} />
       <label className="-mt-5 text-gray-500">Date pre Month</label>
       <div className="divider divider-secondary"></div>
       <h2 className="text-center text-2xl font-bold my-4 py-2 bg-orange-200">
         Weekly Sales
       </h2>
-      <Bar data={generateChartData(salesData?.data.weekly, "Week")} />
+      <Bar data={generateChartData(data?.data.weekly, "Week")} />
       <label className="-mt-5 text-gray-500">Week pre Year</label>
       <div className="divider divider-secondary"></div>
 
       <h2 className="text-center text-2xl font-bold my-4 py-2 bg-orange-200">
         Monthly Sales
       </h2>
-      <Bar data={generateChartData(salesData?.data?.monthly, "Month")} />
+      <Bar data={generateChartData(data?.data?.monthly, "Month")} />
       <label className="-mt-5 text-gray-500">Month pre Year</label>
       <div className="divider divider-secondary mt-0"></div>
       <h2 className="text-center text-2xl font-bold my-4 py-2 bg-orange-200">
         Yearly Sales
       </h2>
-      <Bar data={generateChartData(salesData?.data.yearly, "Year")} />
+      <Bar data={generateChartData(data?.data.yearly, "Year")} />
     </div>
   );
 }
