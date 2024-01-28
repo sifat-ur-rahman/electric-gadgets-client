@@ -12,8 +12,8 @@ function DetailsModal({ modelData }) {
           </label>
           <img
             className="size-52 justify-self-center"
-            src={modelData.img}
-            alt={modelData.name}
+            src={modelData?.img}
+            alt={modelData?.name}
           />
           <h4 className="text-2xl font-bold text-center my-3">
             Product details:
@@ -22,37 +22,37 @@ function DetailsModal({ modelData }) {
             {/* left side */}
             <div>
               <p className="text-lg  mb-2">
-                Name: <span className="font-bold">{modelData.name}</span>
+                Name: <span className="font-bold">{modelData?.name}</span>
               </p>
               <p className="text-lg mb-2">
-                Price: <span className="font-bold">{modelData.price}</span>
+                Price: <span className="font-bold">{modelData?.price}</span>
               </p>
               <p className="text-lg mb-2">
                 Quantity:{" "}
-                <span className="font-bold">{modelData.quantity}</span>
+                <span className="font-bold">{modelData?.quantity}</span>
               </p>
               <p className="text-lg mb-2">
                 Category:{" "}
-                <span className="font-bold">{modelData.category}</span>
+                <span className="font-bold">{modelData?.category}</span>
               </p>
             </div>
             {/* right side  */}
             <div>
               <p className="text-lg mb-2">
                 Operating System:
-                <span className="font-bold"> {modelData.operatingSystem}</span>
+                <span className="font-bold"> {modelData?.operatingSystem}</span>
               </p>
               <p className="text-lg mb-2">
                 connectivity :{" "}
-                <span className="font-bold"> {modelData.connectivity}</span>
+                <span className="font-bold"> {modelData?.connectivity}</span>
               </p>
               <p className="text-lg mb-2">
                 Power Source:{" "}
-                <span className="font-bold">{modelData.powerSource}</span>
+                <span className="font-bold">{modelData?.powerSource}</span>
               </p>
               <p className="text-lg mb-2">
                 Features :{" "}
-                <span className="font-bold">{modelData.features}</span>
+                <span className="font-bold">{modelData?.features}</span>
               </p>
             </div>
           </section>
