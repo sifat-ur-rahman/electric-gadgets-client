@@ -1,8 +1,13 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../redux/hooks";
+import { useLoginMutation } from "../redux/features/auth/authApi";
+import { verifyToken } from "../utils/verifyToken";
+import { setUser } from "../redux/features/auth/authSlice";
 
 function Login() {
+  const dispatch = useAppDispatch();
   interface IFormData {
     email: string;
     password: string;
@@ -13,13 +18,23 @@ function Login() {
     handleSubmit,
     reset,
   } = useForm<IFormData>();
+  const [login, { error }] = useLoginMutation();
+  console.log(error);
   const location = useLocation();
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
 
-  const handleLogin = (data: IFormData) => {
-    console.log(data);
+  const handleLogin = async (data: IFormData) => {
+    const userInfo = {
+      email: data.email,
+      password: data.password,
+    };
+
+    const res = await login(userInfo).unwrap();
+    const user = verifyToken(res.data.token);
+
+    dispatch(setUser({ user: user, token: res.data.token }));
     toast.success("Login successfully");
     reset();
     navigate(from, { replace: true });
