@@ -23,8 +23,8 @@ function MainLayout() {
               </Link>
             </li>
             <li>
-              <Link className="font-medium" to="/dashboard/allBuyers">
-                All Buyers
+              <Link className="font-medium" to="/bulk-delete">
+                Bulk Delete
               </Link>
             </li>
             <li>

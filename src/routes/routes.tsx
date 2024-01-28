@@ -6,6 +6,7 @@ import AddProduct from "../pages/AddProduct";
 import SalesHistory from "../pages/SalesHistory";
 import AllProducts from "../pages/AllProducts";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
+import BulkDelete from "../pages/BulkDelete";
 
 const router = createBrowserRouter([
   {
@@ -27,9 +28,10 @@ const router = createBrowserRouter([
       {
         path: "sales-history",
         element: <SalesHistory />,
-        loader: async () => {
-          return fetch("http://localhost:5000/api/sales-history");
-        },
+      },
+      {
+        path: "bulk-delete",
+        element: <BulkDelete />,
       },
     ],
   },
